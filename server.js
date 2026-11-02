@@ -1,13 +1,19 @@
 const http = require('http');
+const net = require('net');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { spawn } = require('child_process');
+const { spawn, execSync } = require('child_process');
 const HttpProxy = require('http-proxy'); 
 
-const wsPath = process.env.WSPATH || '/api/v1/sync';
-const port = parseInt(process.env.PORT || '3000', 10); 
-const internalPort = 9528; 
+const wsPath = process.env.WSPATH || process.env.API_ROUTE || '/api/v1/sync';
+const port = parseInt(process.env.PORT || '3000', 10);
+const internalPort = 9528;
+
+if (!wsPath) {
+    console.error('❌ [CONFIG ERROR] WSPATH is required for opening the gateway!');
+    process.exit(1);
+}
 
 const bin = path.join(__dirname, 'my-test');
 
@@ -51,7 +57,7 @@ const server = http.createServer((req, res) => {
 
 const proxy = HttpProxy.createProxyServer({
   target: `http://127.0.0.1:${internalPort}`,
-  ws: true 
+  ws: true
 });
 
 server.on('upgrade', (req, socket, head) => {
@@ -63,7 +69,7 @@ server.on('upgrade', (req, socket, head) => {
 });
 
 server.listen(port, '0.0.0.0', () => {
-  console.log(`🚀 [SYSTEM READY] Lightweight dual-channel routing mesh fully deployed on port ${port}!`);
+  console.log(`🚀 [SYSTEM READY] Original Core with Maintenance WebPage fully operational on port ${port}!`);
 });
 
 proxy.on('error', (err) => {
