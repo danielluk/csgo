@@ -1,5 +1,5 @@
 {
-  "name": "pxxl-custom-edge",
+  "name": "pxxl-xray-ws-tls",
   "version": "1.0.0",
   "private": true,
   "main": "server.js",
@@ -9,6 +9,6 @@
   },
   "engines": { "node": ">=18" },
   "dependencies": {
-    "ws": "^8.16.0"
+    "http-proxy": "^1.18.1"
   }
 }
