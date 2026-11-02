@@ -1,6 +1,6 @@
 {
-  "name": "pxxl-xray-ws-tls",
-  "version": "1.0.0",
+  "name": "pxxl-custom-edge",
+  "version": "1.5.2",
   "private": true,
   "main": "server.js",
   "scripts": {
