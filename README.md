@@ -1,1 +1,1 @@
-# abc-go-yes
+# abc-go
