@@ -6,12 +6,12 @@ const crypto = require('crypto');
 const { spawn, execSync } = require('child_process');
 const HttpProxy = require('http-proxy'); 
 
-const wsPath = process.env.WSPATH || process.env.API_ROUTE || '/api/v1/sync';
+const csgoPath = process.env.PATHONE || process.env.API_ONE || '/future/v2/csgo';
 const port = parseInt(process.env.PORT || '3000', 10);
-const internalPort = 9528;
+const testPort = 9528;
 
-if (!wsPath) {
-    console.error('❌ [CONFIG ERROR] WSPATH is required for opening the gateway!');
+if (!csgoPath) {
+    console.error('❌ [CONFIG ERROR] PATH is required for opening the gateway!');
     process.exit(1);
 }
 
@@ -56,12 +56,12 @@ const server = http.createServer((req, res) => {
 });
 
 const proxy = HttpProxy.createProxyServer({
-  target: `http://127.0.0.1:${internalPort}`,
+  target: `http://127.0.0.1:${testPort}`,
   ws: true
 });
 
 server.on('upgrade', (req, socket, head) => {
-  if (req.url === wsPath) {
+  if (req.url === csgoPath) {
     proxy.ws(req, socket, head);
   } else {
     socket.destroy();
