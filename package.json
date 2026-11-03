@@ -2,10 +2,10 @@
   "name": "pxxl-custom-edge",
   "version": "1.5.2",
   "private": true,
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "node setup.js"
+    "start": "node index.js",
+    "build": "node up.js"
   },
   "engines": { "node": ">=18" },
   "dependencies": {
